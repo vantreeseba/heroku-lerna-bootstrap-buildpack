@@ -21,7 +21,9 @@ BUILD_DIR="$1"
 CACHE_DIR="$2"
 ENV_DIR="$3"
 
-yarn bootstrap
+export PATH="$BUILD_DIR/.heroku/node/bin:$BUILD_DIR/.heroku/yarn/bin":$PATH
+
+cd $BUILD_DIR && yarn bootstrap
 
 echo "Bootstrapped root successfully" | indent
 
