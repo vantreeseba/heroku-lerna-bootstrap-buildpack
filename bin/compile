@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# bin/compile <build-dir> <cache-dir>
 
 # Fail immediately on non-zero exit code.
 set -e
@@ -22,18 +21,7 @@ BUILD_DIR="$1"
 CACHE_DIR="$2"
 ENV_DIR="$3"
 
-if [ ! -f "${ENV_DIR}/APP_BASE" ]; then
-    echo "APP_BASE was not set. Aborting" | indent
-    exit 1
-fi
+yarn bootstrap
 
-APP_BASE="$(cat "${ENV_DIR}/APP_BASE")"
-SUB_COMMAND="$(cat "${ENV_DIR}/APP_BASE_COMMAND")"
-
-
-(
-    cd "${BUILD_DIR}/${APP_BASE}" && "${SUB_COMMAND}"
-)
-
-echo "Bootstraped root and ran command in ${APP_BASE} to successfully" | indent
+echo "Bootstrapped root successfully" | indent
 
